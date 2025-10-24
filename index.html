@@ -4,100 +4,144 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>JUGADOS</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <!-- Etiqueta del equipo actual (arriba-izquierda) -->
+  <div id="badge-turno" class="badge-turno">Equipo A</div>
 
-  <!-- Equipo turno (arriba-izquierda) -->
-  <div id="teamBadge">Equipo A</div>
-  <!-- HUD (arriba-derecha) -->
-  <div id="hudRight"></div>
+  <!-- Avisos/notificaciones (arriba-derecha) -->
+  <div id="toast"></div>
 
-  <main class="stage">
-    <div class="wheel-wrap">
-      <div class="pointer"></div>
-      <canvas id="wheel"></canvas>
-      <div class="hub"><span id="hubLabel">JUGADOS</span></div>
-    </div>
+  <!-- Contenedor principal centrado -->
+  <main class="wrap">
+    <section class="ruleta-wrap">
+      <!-- Flecha fija arriba (blanca con borde negro) -->
+      <div class="flecha"></div>
 
-    <div class="legend">
-      <div class="lg-item"><span class="dot blue"></span> 💬 Comunicación</div>
-      <div class="lg-item"><span class="dot green"></span> 🎯 Objetivo común</div>
-      <div class="lg-item"><span class="dot yellow"></span> 💡 Resolución</div>
-      <div class="lg-item"><span class="dot orange"></span> 🤝 Colaboración</div>
-      <div class="lg-item"><span class="dot purple"></span> 👑 Corona</div>
-      <div class="lg-item"><span class="dot dark"></span> ⚔️ Duelo</div>
-    </div>
+      <!-- Ruleta -->
+      <canvas id="wheel" width="720" height="720" aria-label="ruleta"></canvas>
 
-    <section class="scoreboard">
-      <div class="teamBox" id="teamABox">
+      <!-- Botón central (tapa del centro) -->
+      <button id="btnSpin" class="btn-center" aria-label="Girar ruleta">
+        JUGADOS
+      </button>
+    </section>
+
+    <!-- Leyenda de categorías -->
+    <section class="legend">
+      <span class="dot dot-com"></span> Comunicación
+      <span class="dot dot-col"></span> Colaboración
+      <span class="dot dot-res"></span> Resolución
+      <span class="dot dot-obj"></span> Objetivo común
+      <span class="dot dot-corona"></span> Corona
+      <span class="dot dot-re"></span> Reintenta
+    </section>
+
+    <!-- Marcadores -->
+    <section class="scoreboards">
+      <!-- Equipo A -->
+      <div class="score">
         <h3>Equipo A</h3>
-        <div class="row">
-          <div class="pill blue"><span>💬</span><b id="A-com">0/3</b></div>
-          <div class="pill green"><span>🎯</span><b id="A-obj">0/3</b></div>
-          <div class="pill yellow"><span>💡</span><b id="A-res">0/3</b></div>
-          <div class="pill orange"><span>🤝</span><b id="A-col">0/3</b></div>
+        <div class="tracks">
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-com">💬</span>
+              <span id="a-com" class="track-num">0/3</span>
+            </div>
+            <div id="a-com-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-obj">🎯</span>
+              <span id="a-obj" class="track-num">0/3</span>
+            </div>
+            <div id="a-obj-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-res">💡</span>
+              <span id="a-res" class="track-num">0/3</span>
+            </div>
+            <div id="a-res-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-col">🤝</span>
+              <span id="a-col" class="track-num">0/3</span>
+            </div>
+            <div id="a-col-icons" class="icons"></div>
+          </div>
         </div>
-        <div class="iconsWon" id="A-icons"></div>
       </div>
 
-      <div class="teamBox" id="teamBBox">
+      <!-- Equipo B -->
+      <div class="score">
         <h3>Equipo B</h3>
-        <div class="row">
-          <div class="pill blue"><span>💬</span><b id="B-com">0/3</b></div>
-          <div class="pill green"><span>🎯</span><b id="B-obj">0/3</b></div>
-          <div class="pill yellow"><span>💡</span><b id="B-res">0/3</b></div>
-          <div class="pill orange"><span>🤝</span><b id="B-col">0/3</b></div>
+        <div class="tracks">
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-com">💬</span>
+              <span id="b-com" class="track-num">0/3</span>
+            </div>
+            <div id="b-com-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-obj">🎯</span>
+              <span id="b-obj" class="track-num">0/3</span>
+            </div>
+            <div id="b-obj-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-res">💡</span>
+              <span id="b-res" class="track-num">0/3</span>
+            </div>
+            <div id="b-res-icons" class="icons"></div>
+          </div>
+
+          <div class="track">
+            <div class="track-head">
+              <span class="chip chip-col">🤝</span>
+              <span id="b-col" class="track-num">0/3</span>
+            </div>
+            <div id="b-col-icons" class="icons"></div>
+          </div>
         </div>
-        <div class="iconsWon" id="B-icons"></div>
       </div>
     </section>
   </main>
 
-  <!-- Modal pregunta -->
-  <div id="questionModal" class="modal hidden">
+  <!-- Tarjeta de pregunta -->
+  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
     <div class="card">
-      <div class="cardHead">
-        <div class="catDot" id="catDot"></div>
-        <h4 id="catTitle">Categoría</h4>
-        <div class="timer" id="timer">60</div>
-      </div>
-      <div class="qText" id="qText">Pregunta…</div>
-      <div class="options" id="options"></div>
-      <div class="cardFoot">
-        <button id="nextBtn" class="next hidden">Continuar</button>
-      </div>
+      <header class="card-head">
+        <span id="cardCatDot" class="dot"></span>
+        <div class="card-titles">
+          <span id="cardCatName" class="cat-name">Categoría</span>
+          <span id="cardTurno" class="turno">— Turno A</span>
+        </div>
+        <div id="cardTimer" class="timer">60</div>
+      </header>
+
+      <h2 id="cardQuestion" class="q"></h2>
+
+      <div id="cardOptions" class="opts"></div>
+
+      <footer class="card-foot">
+        <button id="btnCerrar" class="btn ghost">Cerrar</button>
+      </footer>
     </div>
   </div>
 
-  <!-- Modal Corona: elegir categoría -->
-  <div id="crownModal" class="modal hidden">
-    <div class="card">
-      <h3 style="text-align:center;margin-bottom:8px;">👑 Elegí la categoría</h3>
-      <div class="crownChoices">
-        <button class="cChoice blue" data-cat="com">💬 Comunicación</button>
-        <button class="cChoice orange" data-cat="col">🤝 Colaboración</button>
-        <button class="cChoice yellow" data-cat="res">💡 Resolución</button>
-        <button class="cChoice green" data-cat="obj">🎯 Objetivo común</button>
-      </div>
-      <div style="text-align:center;margin-top:10px;">
-        <button id="cancelCrown" class="next">Cancelar</button>
-      </div>
-    </div>
-  </div>
-
-  <!-- Modal Duelo -->
-  <div id="duelModal" class="modal hidden">
-    <div class="card">
-      <h3 style="text-align:center;">⚔️ DUELO</h3>
-      <p id="duelInfo" style="text-align:center;margin:8px 0 12px;"></p>
-      <div style="display:flex;gap:8px;justify-content:center;">
-        <button id="startDuel" class="next">Comenzar</button>
-        <button id="cancelDuel" class="next">Cancelar</button>
-      </div>
-    </div>
-  </div>
-
-  <script src="game.js"></script>
+  <script src="juego.js"></script>
 </body>
 </html>
