@@ -1,76 +1,94 @@
+/* Reset básico */
+* { box-sizing: border-box; }
+html, body { margin:0; padding:0; }
 body {
-  background: #fafafa;
-  margin: 0;
-  font-family: Arial, sans-serif;
-  text-align: center;
+  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  background: #ffffff;
+  color: #111;
 }
 
-.wheel-container {
+/* Turno arriba a la izquierda */
+.top-left{
+  position: fixed;
+  left: 12px;
+  top: 12px;
+  background: #111;
+  color:#fff;
+  border-radius: 999px;
+  padding: 6px 14px;
+  font-weight: 700;
+  z-index: 30;
+}
+
+/* Contenedor central */
+.stage{
+  min-height: calc(100vh - 110px);
+  display: grid;
+  place-items: center;
+  padding-top: 10px;
+}
+
+/* Envoltorio de la ruleta */
+.wheel-wrap{
   position: relative;
-  width: 500px;
-  margin: auto;
+  width: 560px;
+  height: 560px;
+  margin-inline: auto;
+  filter: drop-shadow(0 12px 28px rgba(0,0,0,.15));
 }
 
-#flecha {
-  width: 0;
-  height: 0;
+/* Flecha fija (punta hacia abajo; la rueda gira) */
+#flecha{
+  position: absolute;
+  top: -6px;                    /* pegado arriba */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0; height: 0;
   border-left: 18px solid transparent;
   border-right: 18px solid transparent;
-  border-bottom: 30px solid white;
-  position: absolute;
-  top: -15px;
-  left: calc(50% - 18px);
-  filter: drop-shadow(0 0 4px black);
+  border-top: 26px solid #fff;  /* punta blanca */
+  filter: drop-shadow(0 0 2px #000) drop-shadow(0 0 2px #000);
+  z-index: 5;
 }
 
-#btnGirar {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: white;
-  border: 5px solid black;
+/* Lienzo de la ruleta */
+#ruleta{
+  width: 560px;
+  height: 560px;
+  display: block;
+  background: transparent;
   border-radius: 50%;
-  padding: 35px;
-  font-weight: bold;
-  font-size: 20px;
+  border: 10px solid #0c0c0c;   /* anillo externo negro */
+}
+
+/* Botón central */
+#btnGirar{
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  border: 6px solid #0c0c0c;
+  background: #fff;
+  font-size: 22px;
+  font-weight: 800;
+  letter-spacing: .5px;
   cursor: pointer;
+  z-index: 2;
 }
 
-.marcadores {
-  display: flex;
-  justify-content: space-around;
-  margin-top: 30px;
-  font-weight: bold;
+/* Footer con equipos */
+.footer{
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  padding: 24px 32px 32px;
 }
-
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,.7);
-  justify-content: center;
-  align-items: center;
+.footer .team{
+  text-align: center;
 }
-
-.modal-content {
-  background: white;
-  width: 60%;
-  padding: 25px;
-  border-radius: 12px;
-}
-
-.opcion {
-  background: #eee;
-  margin: 8px;
-  padding: 12px;
-  border-radius: 8px;
-  cursor: pointer;
-  font-weight: bold;
-}
-.opcion:hover {
-  background: #ddd;
+.footer h3{
+  margin: 0 0 8px;
 }
