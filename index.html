@@ -1,43 +1,39 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jugados</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Jugados</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-<div class="top-info">
-    <div id="turno">Equipo A</div>
-</div>
+  <!-- Turno arriba a la izquierda -->
+  <div class="top-left" id="turnoBadge">Equipo A</div>
 
-<div class="wheel-container">
-    <canvas id="ruleta" width="500" height="500"></canvas>
-    <div id="flecha"></div>
-    <button id="btnGirar">JUGADOS</button>
-</div>
-
-<div class="marcadores">
-    <div class="equipoA">
-        <h3>Equipo A</h3>
-        <div id="puntosA"></div>
+  <main class="stage">
+    <div class="wheel-wrap">
+      <!-- Flecha fija -->
+      <div id="flecha"></div>
+      <!-- Lienzo de la ruleta -->
+      <canvas id="ruleta" width="560" height="560" aria-label="ruleta"></canvas>
+      <!-- Botón central -->
+      <button id="btnGirar" type="button">JUGADOS</button>
     </div>
-    <div class="equipoB">
-        <h3>Equipo B</h3>
-        <div id="puntosB"></div>
-    </div>
-</div>
+  </main>
 
-<div id="preguntaModal" class="modal">
-    <div class="modal-content">
-        <h2 id="categoriaTitle"></h2>
-        <p id="textoPregunta"></p>
-        <div id="opciones"></div>
-        <div id="contador"></div>
+  <!-- Marcadores (solo placeholders, no cambian lógica) -->
+  <footer class="footer">
+    <div class="team">
+      <h3>Equipo A</h3>
+      <div class="dots"></div>
     </div>
-</div>
+    <div class="team">
+      <h3>Equipo B</h3>
+      <div class="dots"></div>
+    </div>
+  </footer>
 
-<script src="juego.js"></script>
+  <script src="juego.js"></script>
 </body>
 </html>
