@@ -1,147 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>JUGADOS</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jugados</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <!-- Etiqueta del equipo actual (arriba-izquierda) -->
-  <div id="badge-turno" class="badge-turno">Equipo A</div>
 
-  <!-- Avisos/notificaciones (arriba-derecha) -->
-  <div id="toast"></div>
+<div class="top-info">
+    <div id="turno">Equipo A</div>
+</div>
 
-  <!-- Contenedor principal centrado -->
-  <main class="wrap">
-    <section class="ruleta-wrap">
-      <!-- Flecha fija arriba (blanca con borde negro) -->
-      <div class="flecha"></div>
+<div class="wheel-container">
+    <canvas id="ruleta" width="500" height="500"></canvas>
+    <div id="flecha"></div>
+    <button id="btnGirar">JUGADOS</button>
+</div>
 
-      <!-- Ruleta -->
-      <canvas id="wheel" width="720" height="720" aria-label="ruleta"></canvas>
-
-      <!-- Botón central (tapa del centro) -->
-      <button id="btnSpin" class="btn-center" aria-label="Girar ruleta">
-        JUGADOS
-      </button>
-    </section>
-
-    <!-- Leyenda de categorías -->
-    <section class="legend">
-      <span class="dot dot-com"></span> Comunicación
-      <span class="dot dot-col"></span> Colaboración
-      <span class="dot dot-res"></span> Resolución
-      <span class="dot dot-obj"></span> Objetivo común
-      <span class="dot dot-corona"></span> Corona
-      <span class="dot dot-re"></span> Reintenta
-    </section>
-
-    <!-- Marcadores -->
-    <section class="scoreboards">
-      <!-- Equipo A -->
-      <div class="score">
+<div class="marcadores">
+    <div class="equipoA">
         <h3>Equipo A</h3>
-        <div class="tracks">
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-com">💬</span>
-              <span id="a-com" class="track-num">0/3</span>
-            </div>
-            <div id="a-com-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-obj">🎯</span>
-              <span id="a-obj" class="track-num">0/3</span>
-            </div>
-            <div id="a-obj-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-res">💡</span>
-              <span id="a-res" class="track-num">0/3</span>
-            </div>
-            <div id="a-res-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-col">🤝</span>
-              <span id="a-col" class="track-num">0/3</span>
-            </div>
-            <div id="a-col-icons" class="icons"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Equipo B -->
-      <div class="score">
-        <h3>Equipo B</h3>
-        <div class="tracks">
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-com">💬</span>
-              <span id="b-com" class="track-num">0/3</span>
-            </div>
-            <div id="b-com-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-obj">🎯</span>
-              <span id="b-obj" class="track-num">0/3</span>
-            </div>
-            <div id="b-obj-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-res">💡</span>
-              <span id="b-res" class="track-num">0/3</span>
-            </div>
-            <div id="b-res-icons" class="icons"></div>
-          </div>
-
-          <div class="track">
-            <div class="track-head">
-              <span class="chip chip-col">🤝</span>
-              <span id="b-col" class="track-num">0/3</span>
-            </div>
-            <div id="b-col-icons" class="icons"></div>
-          </div>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <!-- Tarjeta de pregunta -->
-  <div id="modal" class="modal hidden" role="dialog" aria-modal="true">
-    <div class="card">
-      <header class="card-head">
-        <span id="cardCatDot" class="dot"></span>
-        <div class="card-titles">
-          <span id="cardCatName" class="cat-name">Categoría</span>
-          <span id="cardTurno" class="turno">— Turno A</span>
-        </div>
-        <div id="cardTimer" class="timer">60</div>
-      </header>
-
-      <h2 id="cardQuestion" class="q"></h2>
-
-      <div id="cardOptions" class="opts"></div>
-
-      <footer class="card-foot">
-        <button id="btnCerrar" class="btn ghost">Cerrar</button>
-      </footer>
+        <div id="puntosA"></div>
     </div>
-  </div>
+    <div class="equipoB">
+        <h3>Equipo B</h3>
+        <div id="puntosB"></div>
+    </div>
+</div>
 
-  <script src="juego.js"></script>
+<div id="preguntaModal" class="modal">
+    <div class="modal-content">
+        <h2 id="categoriaTitle"></h2>
+        <p id="textoPregunta"></p>
+        <div id="opciones"></div>
+        <div id="contador"></div>
+    </div>
+</div>
+
+<script src="juego.js"></script>
 </body>
 </html>
